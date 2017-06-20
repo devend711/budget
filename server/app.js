@@ -9,6 +9,7 @@ const passport = require('passport');
 const session = require('express-session');
 const routes = require('./routes/index.js');
 const app = express();
+const mongoose = require('mongoose');
 
 // Set up static views directory
 app.set('views', path.join(__dirname, 'views'));
@@ -66,5 +67,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Database
+mongoose.connect('mongodb://localhost/budget');
 
 module.exports = app;
